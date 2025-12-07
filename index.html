@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy & Security Toolkit - Protect Your Digital Life</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>SecureKit</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="#" onclick="showSection('home')" class="nav-link active">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <a href="#" onclick="showSection('vpn')" class="nav-link">
+                    <i class="fas fa-network-wired"></i> VPN Guide
+                </a>
+                <a href="#" onclick="showSection('encryption')" class="nav-link">
+                    <i class="fas fa-lock"></i> Encryption
+                </a>
+                <a href="#" onclick="showSection('browsers')" class="nav-link">
+                    <i class="fas fa-globe"></i> Secure Browsers
+                </a>
+                <a href="#" onclick="showSection('tools')" class="nav-link">
+                    <i class="fas fa-tools"></i> Privacy Tools
+                </a>
+                <a href="#" onclick="showSection('checker')" class="nav-link">
+                    <i class="fas fa-check-circle"></i> Security Check
+                </a>
+            </nav>
+            <div class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu">
+        <div class="mobile-menu-header">
+            <h3>Menu</h3>
+            <span class="close-mobile-menu" onclick="toggleMobileMenu()">&times;</span>
+        </div>
+        <nav class="mobile-nav">
+            <a href="#" onclick="showSection('home'); toggleMobileMenu()"><i class="fas fa-home"></i> Home</a>
+            <a href="#" onclick="showSection('vpn'); toggleMobileMenu()"><i class="fas fa-network-wired"></i> VPN Guide</a>
+            <a href="#" onclick="showSection('encryption'); toggleMobileMenu()"><i class="fas fa-lock"></i> Encryption</a>
+            <a href="#" onclick="showSection('browsers'); toggleMobileMenu()"><i class="fas fa-globe"></i> Secure Browsers</a>
+            <a href="#" onclick="showSection('tools'); toggleMobileMenu()"><i class="fas fa-tools"></i> Privacy Tools</a>
+            <a href="#" onclick="showSection('checker'); toggleMobileMenu()"><i class="fas fa-check-circle"></i> Security Check</a>
+        </nav>
+    </div>
+
+    <!-- Home Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-content">
+            <h1 class="animate-fade-in">Protect Your Digital Privacy</h1>
+            <p class="animate-fade-in-delay">Complete toolkit for online security, encryption, and anonymous browsing</p>
+            <div class="hero-features">
+                <div class="hero-feature">
+                    <i class="fas fa-user-secret"></i>
+                    <h3>Anonymous Browsing</h3>
+                    <p>Browse without tracking</p>
+                </div>
+                <div class="hero-feature">
+                    <i class="fas fa-shield-virus"></i>
+                    <h3>Malware Protection</h3>
+                    <p>Stay safe from threats</p>
+                </div>
+                <div class="hero-feature">
+                    <i class="fas fa-key"></i>
+                    <h3>Encryption Tools</h3>
+                    <p>Secure your data</p>
+                </div>
+                <div class="hero-feature">
+                    <i class="fas fa-eye-slash"></i>
+                    <h3>Privacy First</h3>
+                    <p>No tracking, no logs</p>
+                </div>
+            </div>
+            <button class="cta-btn" onclick="showSection('checker')">Check Your Security</button>
+        </div>
+    </section>
+
+    <!-- Threat Level Alert -->
+    <section class="alert-section">
+        <div class="container">
+            <div class="alert-box">
+                <i class="fas fa-exclamation-triangle"></i>
+                <div class="alert-content">
+                    <h3>Current Threat Level: <span id="threatLevel">MODERATE</span></h3>
+                    <p>Your IP: <span id="userIP">Loading...</span> | Location: <span id="userLocation">Detecting...</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VPN Section -->
+    <section id="vpn" class="vpn-section" style="display: none;">
+        <div class="container">
+            <h2 class="section-title">VPN Guide & Recommendations</h2>
+            
+            <div class="info-card">
+                <h3><i class="fas fa-info-circle"></i> What is a VPN?</h3>
+                <p>A Virtual Private Network (VPN) encrypts your internet connection and hides your IP address, making your online activities private and secure.</p>
+            </div>
+
+            <div class="vpn-benefits">
+                <h3>Why Use a VPN?</h3>
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <i class="fas fa-mask"></i>
+                        <h4>Hide Your IP</h4>
+                        <p>Mask your real IP address and location</p>
+                    </div>
+                    <div class="benefit-card">
+                        <i class="fas fa-lock"></i>
+                        <h4>Encrypt Traffic</h4>
+                        <p>Secure all your internet traffic</p>
+                    </div>
+                    <div class="benefit-card">
+                        <i class="fas fa-globe-americas"></i>
+                        <h4>Bypass Restrictions</h4>
+                        <p>Access geo-blocked content</p>
+                    </div>
+                    <div class="benefit-card">
+                        <i class="fas fa-wifi"></i>
+                        <h4>Public WiFi Safety</h4>
+                        <p>Stay safe on public networks</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vpn-recommendations">
+                <h3>Recommended VPN Services</h3>
+                <div id="vpnList" class="vpn-grid"></div>
+            </div>
+
+            <div class="vpn-setup">
+                <h3>How to Set Up a VPN</h3>
+                <div class="steps-container">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h4>Choose a VPN Provider</h4>
+                        <p>Select a trusted VPN service from our recommendations</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h4>Download & Install</h4>
+                        <p>Download the VPN app for your device</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h4>Create Account</h4>
+                        <p>Sign up and choose a subscription plan</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <h4>Connect & Browse</h4>
+                        <p>Connect to a server and browse securely</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Encryption Section -->
+    <section id="encryption" class="encryption-section" style="display: none;">
+        <div class="container">
+            <h2 class="section-title">Encryption Tools & Guides</h2>
+
+            <div class="encryption-tools">
+                <div class="tool-card">
+                    <i class="fas fa-file-code"></i>
+                    <h3>Text Encryption</h3>
+                    <p>Encrypt and decrypt text messages</p>
+                    <button class="btn-primary" onclick="showEncryptionTool('text')">Use Tool</button>
+                </div>
+                <div class="tool-card">
+                    <i class="fas fa-file-archive"></i>
+                    <h3>File Encryption</h3>
+                    <p>Secure your files with encryption</p>
+                    <button class="btn-primary" onclick="showEncryptionTool('file')">Use Tool</button>
+                </div>
+                <div class="tool-card">
+                    <i class="fas fa-key"></i>
+                    <h3>Password Generator</h3>
+                    <p>Generate strong passwords</p>
+                    <button class="btn-primary" onclick="showEncryptionTool('password')">Use Tool</button>
+                </div>
+                <div class="tool-card">
+                    <i class="fas fa-qrcode"></i>
+                    <h3>Hash Generator</h3>
+                    <p>Generate cryptographic hashes</p>
+                    <button class="btn-primary" onclick="showEncryptionTool('hash')">Use Tool</button>
+                </div>
+            </div>
+
+            <!-- Text Encryption Tool -->
+            <div id="textEncryptionTool" class="encryption-tool-container" style="display: none;">
+                <h3>Text Encryption/Decryption</h3>
+                <div class="tool-interface">
+                    <textarea id="textInput" placeholder="Enter text to encrypt/decrypt..." rows="5"></textarea>
+                    <input type="password" id="encryptionKey" placeholder="Enter encryption key">
+                    <div class="tool-buttons">
+                        <button class="btn-primary" onclick="encryptText()">Encrypt</button>
+                        <button class="btn-secondary" onclick="decryptText()">Decrypt</button>
+                    </div>
+                    <textarea id="textOutput" placeholder="Result will appear here..." rows="5" readonly></textarea>
+                </div>
+            </div>
+
+            <!-- Password Generator Tool -->
+            <div id="passwordGeneratorTool" class="encryption-tool-container" style="display: none;">
+                <h3>Strong Password Generator</h3>
+                <div class="tool-interface">
+                    <div class="password-options">
+                        <label>
+                            <input type="number" id="passwordLength" value="16" min="8" max="64">
+                            Password Length
+                        </label>
+                        <label>
+                            <input type="checkbox" id="includeUppercase" checked>
+                            Include Uppercase (A-Z)
+                        </label>
+                        <label>
+                            <input type="checkbox" id="includeLowercase" checked>
+                            Include Lowercase (a-z)
+                        </label>
+                        <label>
+                            <input type="checkbox" id="includeNumbers" checked>
+                            Include Numbers (0-9)
+                        </label>
+                        <label>
+                            <input type="checkbox" id="includeSymbols" checked>
+                            Include Symbols (!@#$%)
+                        </label>
+                    </div>
+                    <button class="btn-primary" onclick="generatePassword()">Generate Password</button>
+                    <div class="password-result">
+                        <input type="text" id="generatedPassword" readonly>
+                        <button class="btn-copy" onclick="copyPassword()"><i class="fas fa-copy"></i> Copy</button>
+                    </div>
+                    <div id="passwordStrength" class="password-strength"></div>
+                </div>
+            </div>
+
+            <!-- Hash Generator Tool -->
+            <div id="hashGeneratorTool" class="encryption-tool-container" style="display: none;">
+                <h3>Hash Generator</h3>
+                <div class="tool-interface">
+                    <textarea id="hashInput" placeholder="Enter text to hash..." rows="3"></textarea>
+                    <select id="hashAlgorithm">
+                        <option value="md5">MD5</option>
+                        <option value="sha1">SHA-1</option>
+                        <option value="sha256" selected>SHA-256</option>
+                        <option value="sha512">SHA-512</option>
+                    </select>
+                    <button class="btn-primary" onclick="generateHash()">Generate Hash</button>
+                    <textarea id="hashOutput" placeholder="Hash will appear here..." rows="3" readonly></textarea>
+                    <button class="btn-copy" onclick="copyHash()"><i class="fas fa-copy"></i> Copy Hash</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Secure Browsers Section -->
+    <section id="browsers" class="browsers-section" style="display: none;">
+        <div class="container">
+            <h2 class="section-title">Secure & Private Browsers</h2>
+            
+            <div class="info-card">
+                <h3><i class="fas fa-info-circle"></i> Why Use Secure Browsers?</h3>
+                <p>Secure browsers protect your privacy by blocking trackers, preventing fingerprinting, and not storing your browsing history.</p>
+            </div>
+
+            <div id="browsersList" class="browsers-grid"></div>
+
+            <div class="browser-tips">
+                <h3>Browser Security Tips</h3>
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <i class="fas fa-puzzle-piece"></i>
+                        <h4>Use Privacy Extensions</h4>
+                        <p>Install uBlock Origin, Privacy Badger, HTTPS Everywhere</p>
+                    </div>
+                    <div class="tip-card">
+                        <i class="fas fa-cookie-bite"></i>
+                        <h4>Block Third-Party Cookies</h4>
+                        <p>Disable cookies from tracking websites</p>
+                    </div>
+                    <div class="tip-card">
+                        <i class="fas fa-user-shield"></i>
+                        <h4>Use Private Mode</h4>
+                        <p>Browse in incognito/private mode when needed</p>
+                    </div>
+                    <div class="tip-card">
+                        <i class="fas fa-sync-alt"></i>
+                        <h4>Keep Updated</h4>
+                        <p>Always use the latest browser version</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy Tools Section -->
+    <section id="tools" class="tools-section" style="display: none;">
+        <div class="container">
+            <h2 class="section-title">Essential Privacy Tools</h2>
+
+            <div class="tools-categories">
+                <div class="category-tabs">
+                    <button class="tab-btn active" onclick="filterTools('all')">All Tools</button>
+                    <button class="tab-btn" onclick="filterTools('messaging')">Messaging</button>
+                    <button class="tab-btn" onclick="filterTools('email')">Email</button>
+                    <button class="tab-btn" onclick="filterTools('storage')">Storage</button>
+                    <button class="tab-btn" onclick="filterTools('security')">Security</button>
+                </div>
+
+                <div id="toolsList" class="tools-grid"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Security Checker Section -->
+    <section id="checker" class="checker-section" style="display: none;">
+        <div class="container">
+            <h2 class="section-title">Security & Privacy Checker</h2>
+
+            <div class="checker-grid">
+                <div class="check-card">
+                    <i class="fas fa-network-wired"></i>
+                    <h3>IP Address Check</h3>
+                    <p>Your IP: <strong id="checkIP">Loading...</strong></p>
+                    <p>Location: <strong id="checkLocation">Detecting...</strong></p>
+                    <p class="status" id="ipStatus">Checking...</p>
+                </div>
+
+                <div class="check-card">
+                    <i class="fas fa-fingerprint"></i>
+                    <h3>Browser Fingerprint</h3>
+                    <p>User Agent: <strong id="userAgent">Detecting...</strong></p>
+                    <p>Screen: <strong id="screenRes">Detecting...</strong></p>
+                    <p class="status" id="fingerprintStatus">Checking...</p>
+                </div>
+
+                <div class="check-card">
+                    <i class="fas fa-cookie"></i>
+                    <h3>Cookies & Tracking</h3>
+                    <p>Cookies Enabled: <strong id="cookiesEnabled">Checking...</strong></p>
+                    <p>Do Not Track: <strong id="dntEnabled">Checking...</strong></p>
+                    <p class="status" id="trackingStatus">Checking...</p>
+                </div>
+
+                <div class="check-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Connection Security</h3>
+                    <p>Protocol: <strong id="protocol">Checking...</strong></p>
+                    <p>WebRTC Leak: <strong id="webrtcLeak">Testing...</strong></p>
+                    <p class="status" id="connectionStatus">Checking...</p>
+                </div>
+            </div>
+
+            <div class="security-score">
+                <h3>Your Privacy Score</h3>
+                <div class="score-circle">
+                    <svg width="200" height="200">
+                        <circle cx="100" cy="100" r="90" fill="none" stroke="#e5e7eb" stroke-width="20"/>
+                        <circle id="scoreCircle" cx="100" cy="100" r="90" fill="none" stroke="#10b981" stroke-width="20" 
+                                stroke-dasharray="565.48" stroke-dashoffset="565.48" transform="rotate(-90 100 100)"/>
+                    </svg>
+                    <div class="score-text">
+                        <span id="scoreValue">0</span>
+                        <span class="score-label">/100</span>
+                    </div>
+                </div>
+                <p id="scoreMessage">Calculating your privacy score...</p>
+            </div>
+
+            <div class="recommendations">
+                <h3>Security Recommendations</h3>
+                <div id="recommendationsList" class="recommendations-list"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3><i class="fas fa-shield-alt"></i> SecureKit</h3>
+                    <p>Your complete privacy and security toolkit. Protect your digital life with encryption, VPNs, and secure browsing tools.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-reddit"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#" onclick="showSection('vpn')">VPN Guide</a></li>
+                        <li><a href="#" onclick="showSection('encryption')">Encryption Tools</a></li>
+                        <li><a href="#" onclick="showSection('browsers')">Secure Browsers</a></li>
+                        <li><a href="#" onclick="showSection('tools')">Privacy Tools</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Privacy Guide</a></li>
+                        <li><a href="#">Security Best Practices</a></li>
+                        <li><a href="#">Threat Intelligence</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> rm2778643@gmail.com</li>
+                        <li><i class="fas fa-phone"></i> +91 7004398297</li>
+                        <li><i class="fas fa-map-marker-alt"></i> India</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 SecureKit Privacy & Security Toolkit. All rights reserved.</p>
+                <p class="disclaimer">⚠️ Educational purposes only. Always follow local laws and regulations.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
